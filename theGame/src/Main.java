@@ -1,6 +1,8 @@
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+	Player test = new Player();
+	test.writer();
+	test.writeHiScores(25, "Ryan");
     }
 }
