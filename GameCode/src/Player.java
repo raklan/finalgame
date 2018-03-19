@@ -18,6 +18,7 @@ public class Player {
     public Player(){
         currentScore = 0;
         levelsCompleted = 0;
+        getHiScoreFile();
     }
 
     public int getHiScore(){
@@ -82,11 +83,22 @@ public class Player {
 
     }
 
-    public void writer(){
+    public void getHiScoreFile(){
+        try{
+            reader = new BufferedReader(new FileReader("hiScores.txt"));
+            currentSpot = reader.readLine();
+            reader.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void writerTest(){
         try {
             dataOut = new DataOutputStream(new FileOutputStream("hiScores.txt"));
 
             dataOut.writeInt(2345235);
         }catch (IOException e){e.printStackTrace();}
     }
+
+
 }
