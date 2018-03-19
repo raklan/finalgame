@@ -1,13 +1,14 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class Player {
-    public int hiScore;
+
+    public int topScore;
     public int currentScore;
-    public int levelsCompleted;
+
+    public Score[] hiScores = new Score[4];
 
     public int lives;
-    public String currentSpot;
-
 
     private BufferedWriter writer;
     private BufferedReader reader;
@@ -17,88 +18,59 @@ public class Player {
 
     public Player(){
         currentScore = 0;
-        levelsCompleted = 0;
-        getHiScoreFile();
+        for(int i = 0; i<hiScores.length; i++){
+            hiScores[i] = new Score("No Name", 0);
+        }
     }
 
-    public int getHiScore(){
-        return hiScore;
+    public int getTopScore(){
+        return topScore;
     }
 
     public int getScore() {
         return currentScore;
     }
 
-    public int getLevelsCompleted() {
-        return levelsCompleted;
-    }
-
     public int getLives() {
         return lives;
     }
 
-    public String getCurrentSpot() {
-        return currentSpot;
-    }
-
-    public void setHiScore(int hiScore) {
-        this.hiScore = hiScore;
+    public void setTopScore(int hiScore) {
+        this.topScore = hiScore;
     }
 
     public void setScore(int score) {
         currentScore = score;
     }
 
-    public void setLevelsCompleted(int levelsCompleted) {
-        this.levelsCompleted = levelsCompleted;
-    }
-
     public void setLives(int lives) {
         this.lives = lives;
     }
 
-    public void setCurrentSpot(String currentSpot) {
-        this.currentSpot = currentSpot;
-    }
-
-    public void writeHiScores(int score, String name){
-        boolean isOk = false;
-        int toCompare;
-        try
-        {
-            dataOut = new DataOutputStream(new FileOutputStream("hiScores.txt"));
-            dataIn = new DataInputStream(new FileInputStream("hiScores.txt"));
-
-            //Checks for whether the New Score should be in the High Scores
-            for(int i = 1; i <= 5; i++){
-                toCompare = dataIn.readInt();
-                if(score>toCompare) {
-                    isOk  = true;
-                    dataIn.close();
-                    break;
+    public void addHiScore(Score s){
+        for(int i = 0; i<hiScores.length; i++){
+            if(s.getHiScore()>hiScores[i].getHiScore()) {
+                for(int k = 3; k>=i-1; k--){
+                    if(k==-1)
+                        break;
+                    hiScores[k+1] = hiScores[k];
                 }
+                hiScores[i] = s;
             }
-
-        }catch(IOException e){e.printStackTrace();}
-
+        }
     }
 
-    public void getHiScoreFile(){
-        try{
+    public Score[] getHiScores() {
+        return hiScores;
+    }
+
+    public void readHiScores(){
+        try {
+
             reader = new BufferedReader(new FileReader("hiScores.txt"));
-            currentSpot = reader.readLine();
-            reader.close();
-        }catch(IOException e){
+
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
-    public void writerTest(){
-        try {
-            dataOut = new DataOutputStream(new FileOutputStream("hiScores.txt"));
-
-            dataOut.writeInt(2345235);
-        }catch (IOException e){e.printStackTrace();}
-    }
-
-
 }

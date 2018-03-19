@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[]args){
 
         Player testPlayer = new Player();
-        System.out.println(testPlayer.getCurrentSpot());
+        testPlayer.readHiScores();
     }
 
 }
