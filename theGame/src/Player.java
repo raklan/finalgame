@@ -1,73 +1,35 @@
-import java.io.*;
-public class Player {
-    public static int hiScore;
-    public int Score;
-    public int levelsCompleted;
-    // public int lives??? 
-    public Player(int h, int s, int c)
-    {
-        hiScore = h;
-        Score = s;
-        levelsCompleted = c;
+public class Player{
+
+    public int topScore;
+    public int currentScore;
+
+    public int lives;
+
+    public Player(){
+        currentScore = 0;
     }
 
-    public void setHiScore(int h)
-    {
-        h = hiScore;
+    public int getTopScore(){
+        return topScore;
     }
 
-    public int getHiScore()
-    {
-        return hiScore;
+    public int getScore() {
+        return currentScore;
     }
 
-    public void setScore(int s)
-    {
-        s = Score;
+    public int getLives() {
+        return lives;
     }
 
-    public int getScore()
-    {
-        return Score;
+    public void setTopScore(int hiScore) {
+        this.topScore = hiScore;
     }
 
-    public void setLvlComplete(int c)
-    {
-        c = levelsCompleted;
+    public void setScore(int score) {
+        currentScore = score;
     }
 
-    public int getLvlComplete()
-    {
-        return levelsCompleted;
+    public void setLives(int lives) {
+        this.lives = lives;
     }
-
-    // public void levelComplete()
-    // {
-    // if(*lvl complete variable* = true)
-    // {
-    // levelsCompleted++;  
-    // }
-    // }
-
-    // public void score()
-    // {
-    // //code for when the player accomplishes a task or does a thing that scores points
-
-    // int scoreAmount = //some way to get the score of said task
-    // Score += scoreAmount;
-    // }
-
-    // public static void saveData()
-    // {
-    // try{
-    // DataOutputStream dataOut = new DataOutputStream(new FileOutputStream("highscore.txt"));
-    // dataOut.writeInt(hiScore);
-    // dataOut.close();
-
-    // }catch(IOException ex)
-    // {
-    // System.out.println("there was an error reading from the file");
-    // ex.printStackTrace();
-    // }
-    // }
 }
