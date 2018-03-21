@@ -1,44 +1,42 @@
-
-/**
- * Write a description of class AdventurePlayer here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class AdventurePlayer extends Player
+public class AdventurePlayer
 {
-    public AdventurePlayer(int hs, int s, int lc)
+    protected int lives;
+    protected int items;
+    protected int score;
+    public AdventurePlayer()
     {
-        super(hs,s,lc);
+        lives = 3;
+        items = 0;
+        score = 0;
     }
-    
-    public void setHighScore(int hs)
+
+    public void setLives(int l)
     {
-        hs = hiScore;
+        l = lives;
+    }
+
+    public void setItems(int i)
+    {
+        i = items;
     }
 
     public void setScore(int s)
     {
-        s = Score;
+        s = score;   
     }
 
-    public void setLevelsCompleted(int l)
+    public int getLives()
     {
-        l = levelsCompleted;
+        return lives;
     }
 
-    public int getHighScore()
+    public int getItems()
     {
-        return hiScore;
+        return items;
     }
-    
+
     public int getScore()
     {
-        return Score;
-    }
-    
-    public int getLevelsCompleted()
-    {
-        return levelsCompleted;
+        return score;   
     }
 }
